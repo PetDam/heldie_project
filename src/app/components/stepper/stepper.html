@@ -1,5 +1,5 @@
 <div class="card">
-  <p-stepper [(value)]="value" class="basis-100" (valueChange)="onStepChange($event)">
+  <p-stepper [(value)]="value" class="max-w-3xl block mx-auto" (valueChange)="onStepChange($event)">
     <p-step-list>
       <!-- STEP 1 -->
       <p-step [value]="1">
@@ -32,8 +32,9 @@
       <p-step [value]="2">
         <ng-template #content let-activateCallback="activateCallback">
           <button
-            class="bg-transparent border-0 inline-flex flex-col gap-2 cursor-pointer"
+            class="bg-transparent border-0 inline-flex flex-col gap-2 cursor-pointer disabled:text-gray-400/80 disabled:cursor-not-allowed"
             (click)="activateCallback(); goToStep(2)"
+            [disabled]="detailsFormInvalid()"
           >
             <span
               class="rounded-full border-2 w-8 h-8 inline-flex items-center justify-center"
@@ -53,9 +54,9 @@
       <p-step [value]="3">
         <ng-template #content let-activateCallback="activateCallback">
           <button
-            class="bg-transparent cursor-pointer border-0 inline-flex flex-col gap-2"
+            class="bg-transparent cursor-pointer border-0 inline-flex flex-col gap-2 disabled:text-gray-400/80 disabled:cursor-not-allowed"
             (click)="activateCallback(); goToStep(3)"
-            [disabled]=""
+            [disabled]="orderDetailsFormInvalid()"
           >
             <span
               class="rounded-full border-2 w-8 h-8 inline-flex items-center justify-center"
