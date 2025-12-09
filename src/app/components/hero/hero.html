@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="card">
+    <p-galleria
+      [value]="images()"
+      [circular]="true"
+      [showItemNavigators]="true"
+      [showThumbnails]="false"
+      [containerStyle]="{ 'max-width': '50%' }"
+    >
+      <ng-template #item let-item>
+        <img [src]="item.itemImageSrc" style="width: 100%; display: block" />
+      </ng-template>
+    </p-galleria>
+  </div>
+</div>

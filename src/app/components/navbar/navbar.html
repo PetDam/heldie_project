@@ -1,0 +1,30 @@
+<nav class="navbar">
+  <div class="navbar-container">
+    <!-- Logo -->
+    <a routerLink="/" class="logo">
+      <img src="/images/logo.webp" alt="SOREIN Logo" />
+    </a>
+
+    <!-- Desktop Menu -->
+    <ul class="nav-links">
+      @for (navlink of navlinks; track navlink.routerLink){
+      <li>
+        <a [routerLink]="navlink.routerLink">
+          <i [class]="navlink.class" [style]="navlink.style"></i>
+          {{ navlink.text }}
+        </a>
+      </li>
+      }
+      <li>
+        <a routerLink="/book" class="btn bookNow">
+          <i class="pi pi-calendar-plus"></i>
+          Book Now
+        </a>
+      </li>
+    </ul>
+    <!-- Hamburger Menu -->
+    <div class="hamburger">
+      <app-sidebar />
+    </div>
+  </div>
+</nav>

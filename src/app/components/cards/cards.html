@@ -1,0 +1,39 @@
+<div class="container flex flex-col items-start">
+  <app-header />
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4 w-full">
+    @for(card of cards(); track card.title; let last=$last; let index=$index ){
+    <div class="mx-auto max-w-md overflow-hidden rounded-xl bg-white shadow-md">
+      <div class="md:flex">
+        <div class="md:shrink-0">
+          <img
+            class="h-48 w-full object-cover md:h-full md:w-48"
+            [src]="card.img"
+            [alt]="card.title"
+            [title]="card.title + ' ' + (index + 1)"
+          />
+        </div>
+        <div class="p-8">
+          <div
+            class="text-sm font-semibold tracking-wide text-indigo-500 uppercase"
+          >
+            {{ card.subtitle + " " + (index + 1) }}
+          </div>
+
+          <h2 class="mt-1 block text-lg leading-tight font-medium text-black">
+            {{ card.title + " " + (index + 1) }}
+          </h2>
+
+          <p
+            class="mt-2 max-w- overflow-x-auto text-gray-500"
+            [title]="card.text"
+          >
+            {{ card.text }}
+          </p>
+
+          <app-card-button></app-card-button>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</div>

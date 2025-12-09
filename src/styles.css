@@ -1,3 +1,46 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'tailwindcss';
+@import "primeicons/primeicons.css";
 
-@import "tailwindcss";
+@theme {
+  --color-primary-50: #eff6ff;
+  --color-primary-100: #dbeafe;
+  --color-primary-150: #c7dfff;
+  --color-primary-200: #bfdbfe;
+  --color-primary-300: #93c5fd;
+  --color-primary-400: #60a5fa;
+  --color-primary-500: #3b82f6;
+  --color-primary-600: #2563eb;
+  --color-primary-700: #1d4ed8;
+  --color-primary-800: #1e40af;
+  --color-primary-900: #1e3a8a;
+}
+
+:root {
+  --bg: #f8f9fb;
+  --card-bg: #ffffff;
+  --border: #d7d9df;
+  --text: #2b2c34;
+  --primary: #517ab8;
+  --primary-light: #52addc;
+  --secondary: #898a91;
+  --light-green: #2dbfad;
+  --primary-hover: #2dbfadaa;
+  --primary-focus: #2dbfadbd;
+  --error: #e63946;
+  --radius: 10px;
+  --transition: 0.25s ease;
+  --transition-button: 1s ease;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: Inter, sans-serif;
+  font-optical-sizing: auto;
+}
+
+.contactCard {
+  @apply w-full h-114 bg-white rounded-[25px] shadow-md hover:shadow-xl gap-y-5 hover:bg-primary-50/30 transition-all ease-in-out;
+}

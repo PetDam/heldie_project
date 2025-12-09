@@ -1,0 +1,28 @@
+<div class="py-6 px-4 text-center">
+  <!-- Main Title -->
+  <h1 class="inline-block text-2xl md:text-4xl font-black tracking-tight">
+    <span
+      class="bg-linear-to-r from-cyan-400 via-blue-600 to-blue-950 bg-clip-text text-transparent drop-shadow-2xl animate-pulse-slow"
+    >
+      {{ title() }}
+    </span>
+  </h1>
+
+  <!-- Subtitle with your shiny component + extra Tailwind flair -->
+  <p class="mt-2 text-lg md:text-xl font-medium ">
+    <om-shiny-text
+      [text]="subtitle()"
+      class="inline-block bg-clip-text text-transparent drop-shadow-lg tracking-wider"
+      textColor="rgba(255, 226, 0, 0.83)"
+      shimmerColor="rgba(0, 6, 193, 1)"
+    >
+    </om-shiny-text>
+  </p>
+
+  <!-- Optional subtle animated underline -->
+  <div class="mt-4 flex justify-center">
+    <div
+      class="h-1 w-32 bg-linear-to-r from-primary-500 via-cyan-400 to-blue-950 rounded-full animate-shine"
+    ></div>
+  </div>
+</div>

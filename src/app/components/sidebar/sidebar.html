@@ -1,0 +1,62 @@
+<div class="card flex justify-center">
+  <p-drawer
+    #drawerRef
+    [(visible)]="visible"
+    (visibleChange)="visible.set($event)"
+    
+  >
+    <ng-template #headless>
+      <div class="flex flex-col h-full">
+        <div class="flex items-center justify-between px-6 pt-4 shrink-0">
+          <span class="inline-flex items-center gap-2">
+           <img src="/images/logo.webp" alt="SOREIN Logo" class="w-50" />
+          </span>
+          <span>
+            <p-button
+              type="button"
+              (click)="closeCallback($event)"
+              icon="pi pi-times"
+              rounded="true"
+              outlined="false"
+              class="h-8 w-8"
+              size="small"
+              [style]="{color: '#162456', backgroundColor:'white', border:'solid 1.5px #162456'}"
+            ></p-button>
+          </span>
+        </div>
+        <div class="overflow-y-auto h-full">
+          <ul class="nav-links">
+            @for (navlink of navlinks; track navlink.routerLink){
+            <li>
+              <a [routerLink]="navlink.routerLink">
+                <i [class]="navlink.class" [style]="navlink.style"></i>
+                {{ navlink.text }}
+              </a>
+            </li>
+            }
+            <li>
+              <a routerLink="/book" class="btn bookNow ">
+                <i class="pi pi-calendar-plus"></i>
+                Book Now
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="mt-auto">
+          <hr class="mb-4 mx-4 border-t border-0 border-surface bg-[#162456]" />
+          <a
+            pRipple
+            class="m-4 flex items-center cursor-pointer p-4 gap-2 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
+          >
+            <p-avatar
+              image="/images/favicon.webp"
+              shape="circle"
+            />
+            <span class="font-bold">Sorein Power</span>
+          </a>
+        </div>
+      </div>
+    </ng-template>
+  </p-drawer>
+  <p-button (click)="visible.set(true)" [style]="{color: 'white', backgroundColor:'#162456', border:'#162456'}" icon="pi pi-bars" />
+</div>

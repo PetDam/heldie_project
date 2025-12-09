@@ -1,0 +1,172 @@
+@let detailsFormInvalid = contactForm.get('name')?.invalid || contactForm.get('email')?.invalid
+||contactForm.get('mobile')?.invalid; @let orderDetailsFormInvalid =
+contactForm.get('message')?.invalid;
+
+<div class="container mx-auto">
+  <div class="flex flex-col md:flex-row justify-around mt-25 gap-25">
+    <!-- Left column -->
+    <div class="container flex flex-col items-center contactCard">
+      <app-header />
+      <div class="container flex justify-center">
+        <div class="flex text-center w-[500px]">
+          <p-fieldset>
+            <ng-template #header>
+              <div class="flex items-center gap-2 px-2">
+                <p-avatar shape="circle"
+                  ><i class="pi pi-bookmark-fill" style="color: rgb(236, 221, 9)"></i
+                ></p-avatar>
+                <span>Header</span>
+              </div>
+            </ng-template>
+            <p class="m-0">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+              dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+              Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+              mollit anim id est laborum.
+            </p>
+          </p-fieldset>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right column -->
+    <div class="container flex flex-col">
+      <app-stepper [(value)]="value" (valueChange)="value.set($event)" />
+      <div class="flex justify-center items-start min-h-[70vh] w-full">
+        <om-border-beam borderRadius="25px" gradientColorStart="#1447e6" gradientColorEnd="#d8ae2d">
+          <form
+            [formGroup]="contactForm"
+            class="w-md bg-white p-8 rounded-[25px] shadow-lg flex flex-col gap-5"
+          >
+            <h1 class="text-blue-700 text-2xl font-bold flex items-center gap-2">
+              <i [class]="getTitle(value()).icon"></i>
+              {{ getTitle(value()).text }}
+            </h1>
+
+            <!-- STEP 1 -->
+            @if (value() === 1) {
+            <label class="flex flex-col font-semibold text-gray-700 gap-1 text-sm">
+              <span class="flex items-center gap-2">
+                <i class="pi pi-user"></i>
+                Name:
+              </span>
+              <input
+                type="text"
+                formControlName="name"
+                class="p-2 rounded-lg border border-gray-300 bg-gray-50 focus:border-indigo-500 focus:bg-indigo-50 outline-none transition"
+              />
+            </label>
+            @if (contactForm.get('name')?.invalid && contactForm.get('name')?.touched) {
+            <div class="text-sm text-red-600 font-medium pl-1">Name is required</div>
+            }
+
+            <label class="flex flex-col font-semibold text-gray-700 gap-1 text-sm">
+              <span class="flex items-center gap-2">
+                <i class="pi pi-envelope"></i>
+                Email:
+              </span>
+              <input
+                type="email"
+                formControlName="email"
+                class="p-2 rounded-lg border border-gray-300 bg-gray-50 focus:border-indigo-500 focus:bg-indigo-50 outline-none transition"
+              />
+            </label>
+            @if (contactForm.get('email')?.invalid && contactForm.get('email')?.touched) {
+            <div class="text-sm text-red-600 font-medium pl-1">Email is required</div>
+            }
+
+            <label class="flex flex-col font-semibold text-gray-700 gap-1 text-sm">
+              <span class="flex items-center gap-2">
+                <i class="pi pi-phone"></i>
+                Mobile Phone:
+              </span>
+              <input
+                type="text"
+                formControlName="mobile"
+                class="p-2 rounded-lg border border-gray-300 bg-gray-50 focus:border-indigo-500 focus:bg-indigo-50 outline-none transition"
+              />
+            </label>
+            @if (contactForm.get('mobile')?.invalid && contactForm.get('mobile')?.touched) {
+            <div class="text-sm text-red-600 font-medium pl-1">Mobile phone is required</div>
+            } }
+
+            <!-- STEP 2 -->
+            @else if (value() === 2) {
+            <label class="flex flex-col font-semibold text-gray-700 gap-1 text-sm">
+              <span class="flex items-center gap-2">
+                <i class="pi pi-comments"></i>
+                Message:
+              </span>
+              <textarea
+                formControlName="message"
+                class="p-2 rounded-lg border border-gray-300 bg-gray-50 focus:border-indigo-500 focus:bg-indigo-50 outline-none transition min-h-[100px] resize-y"
+              ></textarea>
+            </label>
+            @if (contactForm.get('message')?.invalid && contactForm.get('message')?.touched) {
+            <div class="text-sm text-red-600 font-medium pl-1">Message is required</div>
+            }
+
+            <label class="flex flex-col font-semibold text-gray-700 gap-1 text-sm">
+              <span class="flex items-center gap-2">
+                <i class="pi pi-ticket"></i>
+                Coupon:
+              </span>
+              <input
+                type="text"
+                formControlName="coupon"
+                class="p-2 rounded-lg border border-gray-300 bg-gray-50 focus:border-indigo-500 focus:bg-indigo-50 outline-none transition"
+              />
+            </label>
+            @if (contactForm.get('coupon')?.invalid && contactForm.get('coupon')?.touched) {
+            <div class="text-sm text-red-600 font-medium pl-1">Coupon is required</div>
+            } }
+
+            <!-- STEP 3 -->
+            @else {
+            <div class="container h-20">
+              @defer (on viewport) {
+              <re-captcha [siteKey]="siteKey" (resolved)="resolvedRecaptcha($event)" />
+              } @placeholder (minimum 1000) {
+              <p-skeleton width="300px" height="74px" />
+              }
+            </div>
+
+            <button
+              type="button"
+              (click)="onSubmit()"
+              [disabled]="contactForm.invalid || !gRecaptchaResponse()"
+              class="mt-4 p-2 rounded-lg font-semibold text-white bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-indigo-700 transition"
+            >
+              Submit
+            </button>
+            }
+
+            <div class="flex justify-between pt-1">
+              @if (value() > 1) {
+              <button
+                type="button"
+                (click)="prevStep()"
+                [disabled]="value() === 1"
+                class="px-3 py-1 rounded-sm font-semibold bg-gray-300 hover:bg-gray-400 transition disabled:opacity-50 cursor-pointer"
+              >
+                Back
+              </button>
+              } @if (value() < 3 ) {
+              <button
+                type="button"
+                (click)="nextStep()"
+                [disabled]="value() === 1 ? detailsFormInvalid : orderDetailsFormInvalid"
+                class="px-4 py-2 rounded-lg font-semibold text-white bg-blue-700 hover:bg-blue-500 transition cursor-pointer disabled:bg-blue-700/30"
+              >
+                Next
+              </button>
+              }
+            </div>
+          </form>
+        </om-border-beam>
+      </div>
+    </div>
+  </div>
+</div>

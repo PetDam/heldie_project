@@ -1,0 +1,75 @@
+<div class="card">
+  <p-stepper [(value)]="value" class="basis-100" (valueChange)="onStepChange($event)">
+    <p-step-list>
+      <!-- STEP 1 -->
+      <p-step [value]="1">
+        <p-stepper-separator
+          class="p-stepper-separator"
+          pc74="500px"
+          data-pc-section="root"
+          data-pc-name="e"
+        ></p-stepper-separator>
+        <ng-template #content let-activateCallback="activateCallback">
+          <button
+            class="bg-transparent border-0 inline-flex flex-col gap-2 cursor-pointer"
+            (click)="activateCallback(); goToStep(1)"
+          >
+            <span
+              class="rounded-full border-2 w-8 h-8 inline-flex items-center justify-center"
+              [ngClass]="{
+                'bg-blue-800 text-blue-200 border-primary': 1 <= value(),
+                'border-surface': 1 > value()
+              }"
+            >
+              <i class="pi pi-id-card"></i>
+            </span>
+          </button>
+        </ng-template>
+        Details
+      </p-step>
+
+      <!-- STEP 2 -->
+      <p-step [value]="2">
+        <ng-template #content let-activateCallback="activateCallback">
+          <button
+            class="bg-transparent border-0 inline-flex flex-col gap-2 cursor-pointer"
+            (click)="activateCallback(); goToStep(2)"
+          >
+            <span
+              class="rounded-full border-2 w-8 h-8 inline-flex items-center justify-center"
+              [ngClass]="{
+                'bg-blue-800 text-blue-200 border-primary': 2 <= value(),
+                'border-surface': 2 > value()
+              }"
+            >
+              <i class="pi pi-briefcase"></i>
+            </span>
+          </button>
+        </ng-template>
+        Order Details
+      </p-step>
+
+      <!-- STEP 3 -->
+      <p-step [value]="3">
+        <ng-template #content let-activateCallback="activateCallback">
+          <button
+            class="bg-transparent cursor-pointer border-0 inline-flex flex-col gap-2"
+            (click)="activateCallback(); goToStep(3)"
+            [disabled]=""
+          >
+            <span
+              class="rounded-full border-2 w-8 h-8 inline-flex items-center justify-center"
+              [ngClass]="{
+                'bg-blue-800 text-blue-200 border-primary': 3 <= value(),
+                'border-surface': 3 > value()
+              }"
+            >
+              <i class="pi pi-shield"></i>
+            </span>
+          </button>
+        </ng-template>
+        Authentication
+      </p-step>
+    </p-step-list>
+  </p-stepper>
+</div>

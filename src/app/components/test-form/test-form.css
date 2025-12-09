@@ -1,0 +1,27 @@
+.div-class {
+  color: aqua;
+}
+
+#div-id {
+  color: blue;
+}
+
+div {
+  color: chartreuse;
+}
+
+.span-class {
+  color: blueviolet;
+}
+
+#span-id {
+  color: brown;
+}
+
+span {
+  color: chocolate;
+}
+
+span.span-class>#span-id {
+    color: crimson;
+}
