@@ -1,50 +1,28 @@
-/* Navigation Links */
-.nav-links {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  gap: 28px;
-  padding: 35px;
+.btn-cta-gradient {
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
 }
 
-.nav-links li a {
-  text-decoration: none;
-  color: #1a1a1a;
-  font-weight: 700;
-  font-size: 1rem;
-  transition: 0.3s;
-  padding: 8px 0;
-}
-
-.nav-links li a:hover {
-  color: #5da2e8;
-  transform: translateY(-1px);
-}
-
-/* CTA button */
-.nav-links li .btn {
-  padding: 10px 10px;
-  background: linear-gradient(135deg, #0a3c68, #2f6fb3);
-  color: white;
-  border-radius: 10px;
-  font-weight: 600;
-  transition: 0.3s;
-}
-
-.nav-links li .btn:hover {
- transform: translateY(-2px) scale(1.05);
+.hover\:shadow-lg-custom:hover,
+.btn-cta-gradient:hover {
   box-shadow: 0 6px 18px rgba(9, 74, 133, 0.4);
 }
-.nav-links li .btn::after {
-content: "";
-  position: absolute;
-  left: 50%;
-  bottom: -4px;
-  transform: translateX(-50%);
-  width: 0;
-  height: 2px;
-  background: #094a85;
-  transition: width 0.3s ease;
-  border-radius: 2px;
+
+::ng-deep .p-button-icon.pi.pi-times {
+  font-size: 12px;
+}
+::ng-deep .p-ripple.p-button.p-button-icon-only.p-button-rounded.p-button-sm.p-component {
+  border-radius: 25%;
+  width: 20px;
+  height: 20px;
+}
+
+::ng-deep .p-ripple.p-button.p-button-icon-only.p-button-rounded.p-button-sm.p-component:hover {
+  color: var(--primary-light) !important;
+  border: var(--primary-light) 1px solid !important;
+  box-shadow: 2px 2px 1px var(--primary) !important;
+}
+
+::ng-deep .p-drawer-mask.p-overlay-mask {
+    z-index: 9 !important; 
+
 }
