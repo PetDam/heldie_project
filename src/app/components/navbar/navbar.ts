@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { links } from './navlinks.config';
-import { Sidebar } from "../sidebar/sidebar";
+import { Sidebarz } from '../sidebar/sidebar';
 
 @Component({
   selector: 'app-navbar',
-  imports: [RouterLink, Sidebar],
+  imports: [RouterLink, Sidebarz],
   templateUrl: './navbar.html',
   styleUrl: './navbar.css',
 })
