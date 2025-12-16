@@ -1,108 +1,164 @@
 <footer
-  class="pt-[60px] px-5 pb-[30px] relative bg-linear-to-b from-(--primary) to-(--primary-light)"
+  class="relative bg-linear-to-b from-(--primary) to-(--primary-light) pt-14 px-5 pb-8 text-[#e6e6e6]"
 >
-  <!-- Glow line on top -->
+  <!-- Glow line -->
   <div
     class="absolute top-0 left-1/2 w-[60%] h-0.5 -translate-x-1/2 bg-linear-to-r from-transparent via-[#5da2e8] to-transparent opacity-60"
   ></div>
 
-  <div class="max-w-[1250px] mx-auto flex flex-wrap gap-10 justify-between">
+  <!-- Main Grid -->
+  <div class="max-w-[1250px] mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12 text-center">
     <!-- Logo & Description -->
-    <div class="flex-1 min-w-[220px]">
+    <div class="flex flex-col items-center order-1">
       <a
         routerLink="/"
         class="text-3xl font-bold text-white tracking-tight hover:opacity-70 transition"
-        >ΕΛΔΗΕ</a
       >
-      <p class="mt-3 text-[0.95rem] leading-[1.6] text-[#d0d6db]">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua.
+        ΕΛΔΗΕ
+      </a>
+
+      <p class="mt-4 text-sm leading-relaxed text-[#d0d6db] max-w-md">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua.
       </p>
+
+      <!-- Follow us (LG only here) -->
+      <div class="mt-10 hidden lg:block">
+        <h4 class="text-white text-lg font-semibold mb-5">Ακολουθήστε μας</h4>
+
+        <ul class="flex justify-center gap-4">
+          <li>
+            <a
+              href="#"
+              class="w-12 h-12 flex items-center justify-center rounded-full bg-white text-black shadow-md transition-all duration-350 ease-in-out hover:-translate-y-1 hover:bg-red-500 hover:text-white hover:shadow-lg"
+            >
+              <i class="pi pi-google text-xl"></i>
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="w-12 h-12 flex items-center justify-center rounded-full bg-white text-black shadow-md transition-all duration-350 ease-in-out hover:-translate-y-1 hover:bg-[#1877f2] hover:text-white hover:shadow-lg"
+            >
+              <i class="pi pi-facebook text-xl"></i>
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="w-12 h-12 flex items-center justify-center rounded-full bg-white text-black shadow-md transition-all duration-350 ease-in-out hover:-translate-y-1 hover:bg-black hover:text-white hover:shadow-lg"
+            >
+              <i class="pi pi-tiktok text-xl"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
 
     <!-- Useful Links -->
-    <div class="flex-1 min-w-50">
-      <h4 class="text-white text-[1.15rem] font-semibold mb-4">Useful Links</h4>
-      <ul class="space-y-2">
+    <div class="flex flex-col items-center order-2">
+      <h4 class="text-white text-lg font-semibold mb-4">Χρήσιμοι σύνδεσμοι</h4>
+
+      <ul class="space-y-3">
         <li>
           <a
-            routerLink="/"
-            class="text-[#c7d3df] text-[0.95rem] border-b border-transparent hover:border-[#5da2e8] hover:text-white transition"
+            routerLink="/about"
+            class="text-[#c7d3df] text-[0.95rem] border-b border-transparent cursor-pointer hover:border-[#5da2e8] hover:text-white transition"
             >Home</a
           >
         </li>
         <li>
           <a
-            routerLink="/services"
-            class="text-[#c7d3df] text-[0.95rem] border-b border-transparent hover:border-[#5da2e8] hover:text-white transition"
+            routerLink="/about"
+            class="text-[#c7d3df] text-[0.95rem] border-b border-transparent cursor-pointer hover:border-[#5da2e8] hover:text-white transition"
             >Services</a
           >
         </li>
         <li>
           <a
             routerLink="/about"
-            class="text-[#c7d3df] text-[0.95rem] border-b border-transparent hover:border-[#5da2e8] hover:text-white transition"
+            class="text-[#c7d3df] text-[0.95rem] border-b border-transparent cursor-pointer hover:border-[#5da2e8] hover:text-white transition"
             >About</a
           >
         </li>
         <li>
           <a
-            routerLink="/contact"
-            class="text-[#c7d3df] text-[0.95rem] border-b border-transparent hover:border-[#5da2e8] hover:text-white transition"
+            routerLink="/about"
+            class="text-[#c7d3df] text-[0.95rem] border-b border-transparent cursor-pointer hover:border-[#5da2e8] hover:text-white transition"
             >Contact</a
           >
         </li>
       </ul>
     </div>
 
-    <!-- Location -->
-    <div class="flex-1 min-w-[220px] -ml-25">
-      <h4 class="text-white text-[1.15rem] font-semibold mb-3">
-        More About Us
-      </h4>
+    <!-- More About Us -->
+    <div class="flex flex-col items-center order-3">
+      <h4 class="text-white text-lg font-semibold mb-4">Περισσότερα για εμάς</h4>
 
-      <div class="flex flex-col md:flex-row items-start gap-6">
-        <!-- Map Left -->
+      <div class="flex flex-col sm:flex-row items-center gap-5">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12578.002059513185!2d23.753146797089396!3d37.98878440091067!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a19800c1d6dc07%3A0x1843d9fcd6f71a1b!2zzpHOvM-AzrXOu8-MzrrOt8-Azr_OuSwgzpHOuM6uzr3OsQ!5e0!3m2!1sel!2sgr!4v1764626771292!5m2!1sel!2sgr"
           class="rounded-lg border-0"
           width="220"
           height="150"
           loading="lazy"
-          allowfullscreen=""
-          referrerpolicy="no-referrer-when-downgrade"
         ></iframe>
 
-        <!-- Info Right -->
-        <div class="flex flex-col gap-1">
-          <p class="text-[#d0d6db] text-[0.95rem] leading-[1.6]">
-            Location of Building: Ampelokipoi
-          </p>
-          <p class="text-[#d0d6db] text-[0.95rem] leading-[1.6]">PC: ######</p>
-          <p class="text-[#d0d6db] text-[0.95rem] leading-[1.6]">
-            Contact numbers: <br />
+        <div class="space-y-1 text-sm text-[#d0d6db]">
+          <p>Location of Building: Ampelokipoi</p>
+          <p>PC: ######</p>
+          <p>
+            Contact numbers:<br />
             6909723680 | 6909156616
           </p>
         </div>
       </div>
     </div>
+
+    <!-- Follow us (ONLY ≤1023px, κάτω από χάρτη) -->
+    <div class="order-4 lg:hidden flex flex-col items-center mt-8">
+      <h4 class="text-white text-lg font-semibold mb-5">Ακολουθήστε μας</h4>
+
+      <ul class="flex justify-center gap-4">
+        <li>
+          <a
+            href="#"
+            class="w-12 h-12 flex items-center justify-center rounded-full bg-white text-black shadow-md transition-all duration-350 ease-in-out hover:-translate-y-1 hover:bg-red-500 hover:text-white hover:shadow-lg"
+          >
+            <i class="pi pi-google text-xl"></i>
+          </a>
+        </li>
+        <li>
+          <a
+            href="#"
+            class="w-12 h-12 flex items-center justify-center rounded-full bg-white text-black shadow-md transition-all duration-350 ease-in-out hover:-translate-y-1 hover:hover:bg-[#1877f2] hover:text-white hover:shadow-lg"
+          >
+            <i class="pi pi-facebook text-xl"></i>
+          </a>
+        </li>
+        <li>
+          <a
+            href="#"
+            class="w-12 h-12 flex items-center justify-center rounded-full bg-white text-black shadow-md transition-all duration-350 ease-in-out hover:-translate-y-1 hover:bg-black hover:text-white hover:shadow-lg"
+          >
+            <i class="pi pi-tiktok text-xl"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
   </div>
 
   <!-- Footer Bottom -->
   <div
-    class="mt-10 pt-5 border-t border-white/15 text-center text-[0.85rem] text-[#d0d6db] flex items-center justify-center gap-2"
+    class="mt-10 pt-5 border-t border-white/15 flex flex-col sm:flex-row items-center justify-center gap-2 text-xs text-[#d0d6db] text-center"
   >
-    Copyright &copy; {{ year }} All rights reserved |
+    <span>© {{ year }} All rights reserved |</span>
+
     <strong class="flex items-center gap-2">
       Damigos Petros
-      <a href="https://github.com/PetDam" aria-label="GitHub">
-        <i class="pi pi-github text-xl"></i>
-      </a>
-      <a
-        href="https://www.linkedin.com/in/petros-damigos-213235273"
-        aria-label="LinkedIn"
-      >
-        <i class="pi pi-linkedin text-xl"></i>
+      <a href="https://github.com/PetDam"><i class="pi pi-github text-lg"></i></a>
+      <a href="https://www.linkedin.com/in/petros-damigos-213235273">
+        <i class="pi pi-linkedin text-lg"></i>
       </a>
     </strong>
   </div>
