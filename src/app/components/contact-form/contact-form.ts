@@ -6,6 +6,7 @@ import {
   ViewChild,
   effect,
   viewChild,
+  input,
 } from '@angular/core';
 import {
   AbstractControl,
@@ -70,6 +71,16 @@ export class ContactForm {
 
   value = signal<number>(1);
 
+  detailsValid = false;
+
+  
+  constructor() {
+    this.contactForm.valueChanges.subscribe((value) => {
+      console.log(value);
+      const username = this.contactForm.get('username')?.errors   
+    });
+  }
+
   nextStep() {
     const currentStep = this.value();
     if (currentStep < 3) {
@@ -113,18 +124,10 @@ export class ContactForm {
     this.emailJsService
       .sendEmail(formValueWithToken)
       .then((response) => {
-        this.toastService.success(
-          'Success',
-          'The email was sent successfully.',
-          3000
-        );
+        this.toastService.success('Success', 'The email was sent successfully.', 3000);
       })
       .catch((err) => {
-        this.toastService.error(
-          'Failed to send email',
-          'Please try again',
-          3000
-        );
+        this.toastService.error('Failed to send email', 'Please try again', 3000);
       });
 
     this.emailJsService.sendAutoReplyEmail({

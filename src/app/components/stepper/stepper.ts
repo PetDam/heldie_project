@@ -1,4 +1,4 @@
-import { Component, input, model, output } from '@angular/core';
+import { Component, input, model } from '@angular/core';
 import { StepperModule } from 'primeng/stepper';
 import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
@@ -25,4 +25,6 @@ export class Stepper {
   goToStep(step: number) {
     this.value.set(step);
   }
+
+  
 }
