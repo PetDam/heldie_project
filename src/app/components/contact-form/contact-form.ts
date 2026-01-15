@@ -1,25 +1,15 @@
+import { Component, inject, signal, WritableSignal } from '@angular/core';
 import {
-  Component,
-  inject,
-  signal,
-  WritableSignal,
-  ViewChild,
-  effect,
-  viewChild,
-  input,
-} from '@angular/core';
-import {
-  AbstractControl,
-  FormControl,
   FormGroup,
-  ReactiveFormsModule,
-  ValidationErrors,
-  ValidatorFn,
+  FormControl,
   Validators,
+  ValidatorFn,
+  AbstractControl,
+  ValidationErrors,
+  ReactiveFormsModule,
 } from '@angular/forms';
 import { EmailJs } from '../../services/emailJs/email-js';
 import { Toast } from '../../services/toast/toast';
-import { automatedTitle, getCurrentDateTime } from '../../lib/helper';
 import { RecaptchaModule } from 'ng-recaptcha-2';
 import { Stepper as StepperComponent } from '../stepper/stepper';
 import { NgxBorderBeamComponent } from '@omnedia/ngx-border-beam';
@@ -27,6 +17,7 @@ import { SkeletonModule } from 'primeng/skeleton';
 import { Header } from '../header/header';
 import { FieldsetModule } from 'primeng/fieldset';
 import { AvatarModule } from 'primeng/avatar';
+import { automatedTitle, getCurrentDateTime } from '../../lib/helper';
 
 export function phoneValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
@@ -71,75 +62,65 @@ export class ContactForm {
 
   value = signal<number>(1);
 
-  detailsValid = false;
+  detailsFormInvalid = false;
+  orderDetailsFormInvalid = false;
 
-  
   constructor() {
-    this.contactForm.valueChanges.subscribe((value) => {
-      console.log(value);
-      const username = this.contactForm.get('username')?.errors   
+    // Ενημέρωση των invalid flags
+    this.contactForm.valueChanges.subscribe(() => {
+      this.detailsFormInvalid =
+        this.contactForm.get('name')?.invalid ||
+        this.contactForm.get('email')?.invalid ||
+        this.contactForm.get('mobile')?.invalid ||
+        false;
+
+      this.orderDetailsFormInvalid = this.contactForm.get('message')?.invalid || false;
     });
   }
 
   nextStep() {
     const currentStep = this.value();
-    if (currentStep < 3) {
-      const newStep = currentStep + 1;
-      this.value.set(newStep);
-    }
+    if (currentStep < 3) this.value.set(currentStep + 1);
   }
 
   prevStep() {
     const currentStep = this.value();
-    if (currentStep > 1) {
-      const newStep = currentStep - 1;
-      this.value.set(newStep);
+    if (currentStep > 1) this.value.set(currentStep - 1);
+  }
+
+  resolvedRecaptcha(token: string | null) {
+    console.log('reCAPTCHA token:', token);
+    this.gRecaptchaResponse.set(token);
+  }
+
+  async onSubmit() {
+    if (!this.gRecaptchaResponse()) {
+      this.toastService.error('Please complete the reCAPTCHA');
+      return;
     }
-  }
 
-  resolvedRecaptcha(e: string | null) {
-    this.gRecaptchaResponse.set(e);
-  }
-
-  onSubmit() {
     const time = getCurrentDateTime();
     this.contactForm.controls.time.setValue(time);
-
-    const title = automatedTitle();
-    this.contactForm.controls.title.setValue(title);
-
-    const formData = { ...this.contactForm.value };
-
-    if (!formData.coupon || formData.coupon.trim() === '') {
-      formData.coupon = 'NO COUPON';
-    }
+    this.contactForm.controls.title.setValue(automatedTitle());
 
     const formValueWithToken = {
       ...this.contactForm.value,
       'g-recaptcha-response': this.gRecaptchaResponse(),
     };
 
-    this.toastService.info(1000, 'Info', 'The email is sent!');
+    try {
+      await this.emailJsService.sendEmail(formValueWithToken);
+      this.toastService.success('Success', 'The email was sent successfully', 3000);
 
-    this.emailJsService
-      .sendEmail(formValueWithToken)
-      .then((response) => {
-        this.toastService.success('Success', 'The email was sent successfully.', 3000);
-      })
-      .catch((err) => {
-        this.toastService.error('Failed to send email', 'Please try again', 3000);
+      // Αυτόματο auto-reply
+      await this.emailJsService.sendAutoReplyEmail({
+        name: this.contactForm.value.name,
+        title: this.contactForm.value.title,
+        email: this.contactForm.value.email,
       });
-
-    this.emailJsService.sendAutoReplyEmail({
-      name: formData.name,
-      title: formData.title,
-      email: formData.email,
-    });
-  }
-
-  onStepperChanged(e: number | undefined) {
-    if (e !== undefined) {
-      this.value.set(e);
+    } catch (err) {
+      console.error(err);
+      this.toastService.error('Failed to send email', 'Please try again', 3000);
     }
   }
 
