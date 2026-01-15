@@ -26,10 +26,4 @@ export const links: NavLink[] = [
     routerLink: '/about',
     style,
   },
-  {
-    class: 'pi pi-envelope',
-    text: 'Contact',
-    routerLink: '/contact',
-    style,
-  },
 ];

@@ -14,29 +14,30 @@ import { Header } from '../header/header';
 export class CarouselComponent {
   products = [
     {
-      img: 'https://primefaces.org/cdn/primeng/images/card-ng.jpg',
+      img: '/images/utilities5.webp',
       title: 'Advanced Card',
       subtitle: 'Subtitle',
       text: 'Lorem ipsum dolor sit amet.',
     },
     {
-      img: 'https://primefaces.org/cdn/primeng/images/card-ng.jpg',
+      img: '/images/utilities5.webp',
       title: 'Advanced Card',
       subtitle: 'Subtitle',
       text: 'Lorem ipsum dolor sit amet.',
     },
     {
-      img: 'https://primefaces.org/cdn/primeng/images/card-ng.jpg',
+      img: '/images/utilities5.webp',
       title: 'Advanced Card',
       subtitle: 'Subtitle',
       text: 'Lorem ipsum dolor sit amet.',
     },
     {
-      img: 'https://primefaces.org/cdn/primeng/images/card-ng.jpg',
+      img: '/images/utilities5.webp',
       title: 'Advanced Card',
       subtitle: 'Subtitle',
       text: 'Lorem ipsum dolor sit amet.',
     },
+   
   ];
 
   responsiveOptions = [

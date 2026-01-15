@@ -2,10 +2,11 @@ import { Component, inject, model, OnInit } from '@angular/core';
 import { GalleriaModule } from 'primeng/galleria';
 import { HeroService } from '../../services/hero/hero';
 import { take } from 'rxjs';
+import { NgxHighlighterComponent } from "@omnedia/ngx-highlighter";
 
 @Component({
   selector: 'app-hero',
-  imports: [GalleriaModule],
+  imports: [GalleriaModule, NgxHighlighterComponent],
   standalone: true,
   templateUrl: './hero.html',
   styleUrl: './hero.css',

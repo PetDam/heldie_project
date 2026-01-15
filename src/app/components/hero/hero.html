@@ -1,15 +1,33 @@
-<div class="container">
-  <div class="card">
-    <p-galleria
-      [value]="images()"
-      [circular]="true"
-      [showItemNavigators]="true"
-      [showThumbnails]="false"
-      [containerStyle]="{ 'max-width': '50%' }"
-    >
-      <ng-template #item let-item>
-        <img [src]="item.itemImageSrc" style="width: 100%; display: block" />
-      </ng-template>
-    </p-galleria>
+<div class="container mx-auto">
+  <div class="grid grid-cols-1 lg:grid-cols-2 items-center gap-8">
+    
+    <div class="card">
+      <p-galleria
+        [value]="images()"
+        [circular]="true"
+        [showItemNavigators]="true"
+        [showThumbnails]="false"
+        class="w-full"
+      >
+        <ng-template #item let-item>
+          <img
+            [src]="item.itemImageSrc"
+            class="w-full block"
+          />
+        </ng-template>
+      </p-galleria>
+    </div>
+
+    <div class="content">
+      <h1 class="text-3xl font-bold">
+        Lorem ipsum
+        <om-highlighter action="underline" color="var( --primary)" [animationDuration]="1000">
+          dolor
+        </om-highlighter>
+        sit amet,
+        <om-highlighter color="var(--primary)">consectetur!</om-highlighter>
+      </h1>
+    </div>
+
   </div>
 </div>
