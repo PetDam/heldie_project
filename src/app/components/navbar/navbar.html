@@ -1,23 +1,23 @@
-<nav 
- class="relative sm:relative shadow-lg lg:w-full lg:fixed lg:top-0 z-10 lg:backdrop-blur-md lg:bg-white/60 lg:shadow-lg w-full"
+<nav
+  class="relative sm:relative shadow-lg lg:w-full lg:fixed lg:top-0 z-10 lg:backdrop-blur-md lg:bg-white/60 lg:shadow-lg w-full"
 >
-  <div 
-    class="max-w-[1250px] mx-auto px-6 h-[74px] flex justify-between items-center"
-  >
-    <a routerLink="/" class="opacity-100 hover:opacity-70 transition-opacity">
-      <img src="/images/logo.webp" alt="SOREIN Logo" class="w-[250px] h-auto mr-2" />
+  <div class="max-w-[1250px] mx-auto px-6 h-[74px] flex justify-between items-center">
+    <a
+      routerLink="/"
+      class="text-4xl font-bold text-[#162456] tracking-tight hover:opacity-70 transition"
+    >
+      HELDIE
     </a>
+    <!-- <a routerLink="/" class="opacity-100 hover:opacity-70 transition-opacity">
+      <img src="/images/logo2.webp" alt="Heldie Logo" class="w-[250px] h-32 mr-2" />
+    </a>  -->
 
     <ul class="nav-links list-none hidden lg:flex items-center md:space-x-6 lg:space-x-10">
       @for (navlink of navlinks; track navlink.routerLink){
       <li>
-        <a 
-          [routerLink]="navlink.routerLink" 
-          class="text-[#1a1a1a] font-bold transition-all duration-300 py-2 link-hover-effect 
-                 
-                 md:text-sm lg:text-base 
-                 
-                 hover:text-(--primary) hover:-translate-y-px"
+        <a
+          [routerLink]="navlink.routerLink"
+          class="text-[#1a1a1a] font-bold transition-all duration-300 py-2 link-hover-effect md:text-sm lg:text-base hover:text-(--primary) hover:-translate-y-px"
         >
           <i [class]="navlink.class" [style]="navlink.style"></i>
           {{ navlink.text }}
@@ -25,22 +25,17 @@
       </li>
       }
       <li>
-        <a 
-          routerLink="/book" 
-          class="px-5 py-2.5 text-white rounded-[10px] font-semibold transition-all duration-300 btn-cta-gradient 
-                 
-                 md:text-sm lg:text-base 
-                 
-                 hover:scale-[1.05] hover:-translate-y-0.5 hover:shadow-lg-custom"
+        <a
+          routerLink="/contact"
+          class="px-5 py-2.5 text-white rounded-[10px] font-semibold transition-all duration-300 btn-cta-gradient md:text-sm lg:text-base hover:scale-[1.05] hover:-translate-y-0.5 hover:shadow-lg-custom"
         >
-          <i class="pi pi-calendar-plus"></i>
-          BookNow
+          <i class="pi pi-envelope"></i>
+          Contact
         </a>
       </li>
     </ul>
-
     <div class="lg:hidden hamburger">
-      <app-sidebar /> 
+      <app-sidebar />
     </div>
   </div>
 </nav>

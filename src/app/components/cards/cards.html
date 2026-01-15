@@ -2,7 +2,7 @@
   <app-header />
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4 w-full">
     @for(card of cards(); track card.title; let last=$last; let index=$index ){
-    <div class="mx-auto max-w-md overflow-hidden rounded-xl bg-white shadow-md">
+    <div class="mx-auto max-w-md overflow-hidden rounded-xl bg-(--border2) shadow-md">
       <div class="md:flex">
         <div class="md:shrink-0">
           <img
@@ -14,7 +14,7 @@
         </div>
         <div class="p-8">
           <div
-            class="text-sm font-semibold tracking-wide text-indigo-500 uppercase"
+            class="text-sm font-semibold tracking-wide text-(--light-green) uppercase"
           >
             {{ card.subtitle + " " + (index + 1) }}
           </div>
