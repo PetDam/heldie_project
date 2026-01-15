@@ -1,7 +1,7 @@
 <div class="container mx-auto">
   <div class="grid grid-cols-1 lg:grid-cols-2 items-center gap-8">
-    
-    <div class="card">
+    <!-- Galleria (2ο στο mobile, 1ο στο desktop) -->
+    <div class="order-2 lg:order-1 card -mt-6 sm:-mt-15 lg:mt-0">
       <p-galleria
         [value]="images()"
         [circular]="true"
@@ -10,24 +10,23 @@
         class="w-full"
       >
         <ng-template #item let-item>
-          <img
-            [src]="item.itemImageSrc"
-            class="w-full block"
-          />
+          <img [src]="item.itemImageSrc" class="w-full block" />
         </ng-template>
       </p-galleria>
     </div>
 
-    <div class="content">
-      <h1 class="text-3xl font-bold">
+    <!-- Content (1ο στο mobile, 2ο στο desktop) -->
+    <div class="order-1 lg:order-2 content px-4 sm:px-6 lg:px-0">
+      <h1
+        class="font-bold leading-tight text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center lg:text-left"
+      >
         Lorem ipsum
-        <om-highlighter action="underline" color="var( --primary)" [animationDuration]="1000">
+        <om-highlighter action="underline" color="var(--primary)" [animationDuration]="1000">
           dolor
         </om-highlighter>
         sit amet,
-        <om-highlighter color="var(--primary)">consectetur!</om-highlighter>
+        <om-highlighter color="var(--primary)" class=" inline-block mt-3 md:mt-0"> consectetur! </om-highlighter>
       </h1>
     </div>
-
   </div>
 </div>
