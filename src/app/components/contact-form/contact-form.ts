@@ -57,7 +57,7 @@ export class ContactForm {
     email: new FormControl('', [Validators.required, Validators.email]),
   });
 
-  siteKey = '6Le1PhQsAAAAAJM4zXC4gE7qy7zino7aGdrfFrdE';
+  siteKey = '6LcmvUssAAAAAMOXyw0gPi7fj-VCBwyEX4VgC208';
   gRecaptchaResponse: WritableSignal<string | null> = signal(null);
 
   value = signal<number>(1);
@@ -89,7 +89,6 @@ export class ContactForm {
   }
 
   resolvedRecaptcha(token: string | null) {
-    console.log('reCAPTCHA token:', token);
     this.gRecaptchaResponse.set(token);
   }
 
@@ -111,16 +110,10 @@ export class ContactForm {
     try {
       await this.emailJsService.sendEmail(formValueWithToken);
       this.toastService.success('Success', 'The email was sent successfully', 3000);
-
-      // Αυτόματο auto-reply
-      await this.emailJsService.sendAutoReplyEmail({
-        name: this.contactForm.value.name,
-        title: this.contactForm.value.title,
-        email: this.contactForm.value.email,
-      });
     } catch (err) {
-      console.error(err);
+      console.error('Main email failed', err);
       this.toastService.error('Failed to send email', 'Please try again', 3000);
+      return;
     }
   }
 
